@@ -1,0 +1,17 @@
+TaskService.ts
+com/vaadin/hilla/mappedtypes/Pageable.ts
+trabajofinal/app/taskmanagement/domain/Task.ts
+com/vaadin/hilla/mappedtypes/Sort.ts
+trabajofinal/app/base/domain/AbstractEntity.ts
+com/vaadin/hilla/mappedtypes/Order.ts
+org/springframework/data/domain/Sort/Direction.ts
+org/springframework/data/domain/Sort/NullHandling.ts
+connect-client.default.ts
+endpoints.ts
+com/vaadin/hilla/mappedtypes/PageableModel.ts
+trabajofinal/app/taskmanagement/domain/TaskModel.ts
+com/vaadin/hilla/mappedtypes/SortModel.ts
+trabajofinal/app/base/domain/AbstractEntityModel.ts
+com/vaadin/hilla/mappedtypes/OrderModel.ts
+org/springframework/data/domain/Sort/DirectionModel.ts
+org/springframework/data/domain/Sort/NullHandlingModel.ts

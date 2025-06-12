@@ -1,0 +1,253 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "Hilla Application",
+    "version" : "1.0.0"
+  },
+  "servers" : [
+    {
+      "url" : "http://localhost:8080/connect",
+      "description" : "Hilla Backend"
+    }
+  ],
+  "tags" : [
+    {
+      "name" : "TaskService",
+      "x-class-name" : "trabajofinal.app.taskmanagement.service.TaskService"
+    }
+  ],
+  "paths" : {
+    "/TaskService/createTask" : {
+      "post" : {
+        "tags" : [
+          "TaskService"
+        ],
+        "operationId" : "TaskService_createTask_POST",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "description" : {
+                    "type" : "string",
+                    "x-java-type" : "java.lang.String"
+                  },
+                  "dueDate" : {
+                    "type" : "string",
+                    "format" : "date",
+                    "nullable" : true,
+                    "x-java-type" : "java.time.LocalDate"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : ""
+          }
+        }
+      }
+    },
+    "/TaskService/list" : {
+      "post" : {
+        "tags" : [
+          "TaskService"
+        ],
+        "operationId" : "TaskService_list_POST",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "pageable" : {
+                    "anyOf" : [
+                      {
+                        "$ref" : "#/components/schemas/com.vaadin.hilla.mappedtypes.Pageable"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "anyOf" : [
+                      {
+                        "$ref" : "#/components/schemas/trabajofinal.app.taskmanagement.domain.Task"
+                      }
+                    ]
+                  },
+                  "x-java-type" : "java.util.List"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "com.vaadin.hilla.mappedtypes.Pageable" : {
+        "type" : "object",
+        "properties" : {
+          "pageNumber" : {
+            "type" : "integer",
+            "format" : "int32",
+            "x-java-type" : "int"
+          },
+          "pageSize" : {
+            "type" : "integer",
+            "format" : "int32",
+            "x-java-type" : "int"
+          },
+          "sort" : {
+            "anyOf" : [
+              {
+                "$ref" : "#/components/schemas/com.vaadin.hilla.mappedtypes.Sort"
+              }
+            ]
+          }
+        }
+      },
+      "trabajofinal.app.taskmanagement.domain.Task" : {
+        "anyOf" : [
+          {
+            "$ref" : "#/components/schemas/trabajofinal.app.base.domain.AbstractEntity"
+          },
+          {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "integer",
+                "format" : "int64",
+                "nullable" : true,
+                "x-java-type" : "java.lang.Long",
+                "x-annotations" : [
+                  {
+                    "name" : "jakarta.persistence.Id"
+                  }
+                ]
+              },
+              "description" : {
+                "type" : "string",
+                "x-validation-constraints" : [
+                  {
+                    "simpleName" : "Size",
+                    "attributes" : {
+                      "max" : 255
+                    }
+                  }
+                ],
+                "x-java-type" : "java.lang.String"
+              },
+              "creationDate" : {
+                "type" : "string",
+                "format" : "date-time",
+                "x-java-type" : "java.time.Instant"
+              },
+              "dueDate" : {
+                "type" : "string",
+                "format" : "date",
+                "nullable" : true,
+                "x-java-type" : "java.time.LocalDate"
+              }
+            }
+          }
+        ],
+        "x-type-arguments" : {
+          "allOf" : [
+            {
+              "type" : "integer",
+              "format" : "int64",
+              "x-java-type" : "java.lang.Long"
+            }
+          ]
+        }
+      },
+      "com.vaadin.hilla.mappedtypes.Sort" : {
+        "type" : "object",
+        "properties" : {
+          "orders" : {
+            "type" : "array",
+            "items" : {
+              "nullable" : true,
+              "anyOf" : [
+                {
+                  "$ref" : "#/components/schemas/com.vaadin.hilla.mappedtypes.Order"
+                }
+              ]
+            },
+            "x-java-type" : "java.util.List"
+          }
+        }
+      },
+      "trabajofinal.app.base.domain.AbstractEntity" : {
+        "type" : "object",
+        "x-type-parameters" : [
+          "ID"
+        ]
+      },
+      "com.vaadin.hilla.mappedtypes.Order" : {
+        "type" : "object",
+        "properties" : {
+          "direction" : {
+            "anyOf" : [
+              {
+                "$ref" : "#/components/schemas/org.springframework.data.domain.Sort$Direction"
+              }
+            ]
+          },
+          "property" : {
+            "type" : "string",
+            "x-validation-constraints" : [
+              {
+                "simpleName" : "NotBlank"
+              }
+            ],
+            "x-java-type" : "java.lang.String"
+          },
+          "ignoreCase" : {
+            "type" : "boolean",
+            "x-java-type" : "boolean"
+          },
+          "nullHandling" : {
+            "nullable" : true,
+            "anyOf" : [
+              {
+                "$ref" : "#/components/schemas/org.springframework.data.domain.Sort$NullHandling"
+              }
+            ]
+          }
+        }
+      },
+      "org.springframework.data.domain.Sort$Direction" : {
+        "type" : "string",
+        "enum" : [
+          "ASC",
+          "DESC"
+        ]
+      },
+      "org.springframework.data.domain.Sort$NullHandling" : {
+        "type" : "string",
+        "enum" : [
+          "NATIVE",
+          "NULLS_FIRST",
+          "NULLS_LAST"
+        ]
+      }
+    }
+  }
+}
