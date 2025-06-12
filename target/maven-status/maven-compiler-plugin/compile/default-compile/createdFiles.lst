@@ -1,0 +1,9 @@
+trabajofinal/app/taskmanagement/package-info.class
+trabajofinal/app/Application.class
+trabajofinal/app/taskmanagement/service/package-info.class
+trabajofinal/app/base/domain/AbstractEntity.class
+trabajofinal/app/taskmanagement/service/TaskService.class
+trabajofinal/app/taskmanagement/domain/package-info.class
+trabajofinal/app/base/domain/package-info.class
+trabajofinal/app/taskmanagement/domain/TaskRepository.class
+trabajofinal/app/taskmanagement/domain/Task.class

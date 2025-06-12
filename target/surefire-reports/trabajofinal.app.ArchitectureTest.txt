@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: trabajofinal.app.ArchitectureTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 23.36 s -- in trabajofinal.app.ArchitectureTest
