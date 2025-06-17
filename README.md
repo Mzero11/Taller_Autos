@@ -1,7 +1,9 @@
 # Trabajofinal README
 
 Mateo Siva: Vehiculo y marca
+
 Jorge Luzuriaga: Login
+
 Maria Valarezo: Mantenimiento
 
 Diagrama de clases:
