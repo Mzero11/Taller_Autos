@@ -8,4 +8,5 @@ Maria Valarezo: Mantenimiento
 
 Diagrama de clases:
 
-![image](https://github.com/user-attachments/assets/33e84f55-39c4-4ff4-9ec7-768263f99173)
+<img width="1061" height="830" alt="image" src="https://github.com/user-attachments/assets/fa2d0935-cf82-47d4-b23a-fe97aa2ad9d8" />
+
