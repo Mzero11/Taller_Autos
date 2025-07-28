@@ -2,12 +2,11 @@ package trabajofinal.app.base.domain.controller.datastruct.list;
 
 
 public class Node <E> {
-    //private Object data; -- dato generico, usado en java 8
     private E data;
-    private Node<E> next; // siguiente nodo
+    private Node<E> next;
 
     public E getData() {
-        return data;
+        return this.data;
     }
 
     public void setData(E data) {
@@ -15,7 +14,7 @@ public class Node <E> {
     }
 
     public Node<E> getNext() {
-        return next;
+        return this.next;
     }
 
     public void setNext(Node<E> next) {
@@ -26,16 +25,14 @@ public class Node <E> {
         this.data = data;
         this.next = next;
     }
-    
+
     public Node(E data) {
         this.data = data;
         this.next = null;
     }
-
     public Node() {
         this.data = null;
         this.next = null;
     }
-
 }
 

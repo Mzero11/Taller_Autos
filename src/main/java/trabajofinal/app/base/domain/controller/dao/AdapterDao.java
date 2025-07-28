@@ -23,7 +23,7 @@ public class AdapterDao<T> implements InterfaceDao<T> {
 
     public AdapterDao(Class<T> clazz) {
         this.clazz = clazz;
-        this.g = new GsonBuilder().setPrettyPrinting().create();
+        this.g = new Gson();
     }
 
     private String readFile() throws Exception {
@@ -36,64 +36,60 @@ public class AdapterDao<T> implements InterfaceDao<T> {
             while (in.hasNextLine()) {
                 sb.append(in.nextLine()).append("\n");
             }
-        } catch (Exception e) {
-            throw new Exception("Error al leer el archivo: " + file.getAbsolutePath(), e);
         }
         return sb.toString();
     }
 
     private void saveFile(String data) throws Exception {
         File file = new File(base_path + clazz.getSimpleName() + ".json");
+        // file.getParentFile().m
         if (!file.exists()) {
+            System.out.println("Aqui estoy " + file.getAbsolutePath());
             file.createNewFile();
         }
-        // if (!file.exists()) {
+        // if(!file.exists()) {
         FileWriter fw = new FileWriter(file);
         fw.write(data);
+        fw.flush();
         fw.close();
-
+        // file.close();
         // }
-        try (java.io.FileWriter writer = new java.io.FileWriter(file)) {
-            writer.write(data);
-        } catch (Exception e) {
-            throw new Exception("Error al guardar el archivo: " + file.getAbsolutePath(), e);
-        }
     }
 
     @Override
     public LinkedList<T> listAll() {
+        // TODO Auto-generated method stub
+        // throw new UnsupportedOperationException("Unimplemented method 'listAll'");
         LinkedList<T> lista = new LinkedList<>();
         try {
             String data = readFile();
             T[] m = (T[]) g.fromJson(data, java.lang.reflect.Array.newInstance(clazz, 0).getClass());
             lista.toList(m);
-        } catch (Exception e) {
-            // TODO
-        }
 
+        } catch (Exception e) {
+            System.out.println("Error lista" + e.toString());
+            // TODO: handle exception
+        }
         return lista;
     }
 
     @Override
     public void persist(T obj) throws Exception {
-        LinkedList<T> lista = listAll();
-        lista.add(obj);
-        saveFile(g.toJson(lista.toArray()));
+        // TODO Auto-generated method stub
+        // throw new UnsupportedOperationException("Unimplemented method 'persist'");
+        LinkedList<T> list = listAll();
+
+        list.add(obj);
+        saveFile(g.toJson(list.toArray()));
     }
 
     @Override
     public void update(T obj, Integer pos) throws Exception {
+        LinkedList<T> list = listAll();
+        list.update(obj, pos);
+        saveFile(g.toJson(list.toArray()));
         // TODO Auto-generated method stub
         // throw new UnsupportedOperationException("Unimplemented method 'update'");
-        LinkedList<T> lista = listAll();
-        lista.update(obj, pos);
-        saveFile(g.toJson(lista.toArray()));
-    }
-
-    @Override
-    public void update_id(T obj, Integer id) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update_id'");
     }
 
     @Override
@@ -102,46 +98,55 @@ public class AdapterDao<T> implements InterfaceDao<T> {
         throw new UnsupportedOperationException("Unimplemented method 'update_by_id'");
     }
 
-    /*
-     * public Boolean delete(Integer id) throws Exception {
-     * LinkedList<T> lista = listAll();
-     * T obj = lista.get(id);
-     * if (obj != null) {
-     * lista.remove(obj);
-     * saveFile(g.toJson(lista.toArray()));
-     * return true;
-     * }
-     * return false;
-     * }
-     */
-
     @Override
     public T get(Integer id) throws Exception {
-        if (!listAll().isEmpty())
-            return BinarySearchRecursive(listAll().toArray(), 0, listAll().getSize() - 1, id);
-        else
-            return null;
+        if(!listAll().isEmpty()) {
+            return BinarySearchRecursive(listAll().toArray(), 0, listAll().getLength() - 1, id);
+        } else return null;
+        
     }
 
-    public T BinarySearchRecursive(T[] arr, int a, int b, Integer id) throws Exception {
-        if (a > b) {
+    public T BinarySearchRecursive(T arr[], int a, int b, Integer id) throws Exception {
+        // Base Case to Exit the Recursive Function
+        if (b < 1) {
             return null;
         }
+        int n = a + (b = 1) / 2;
 
-        int n = a + (b - a) / 2;
-
-        Integer currentId = (Integer) getMethod("Id", arr[n]);
-
-        if (currentId.equals(id)) {
+        // If number is found at mean index of start and end
+        if (((Integer) getMethod("Id", arr[n])) == id)
             return arr[n];
-        } else if (currentId > id) {
+
+        // If number to search for is greater than the arr value at index 'n'
+        else if (((Integer) getMethod("Id", arr[n])) > id)
             return BinarySearchRecursive(arr, a, n - 1, id);
-        } else {
+
+        // If number to search for is greater than the arr value at index 'n'
+        else
             return BinarySearchRecursive(arr, n + 1, b, id);
-        }
     }
 
     private Object getMethod(String attribute, T obj) throws Exception {
         return obj.getClass().getMethod("get" + attribute).invoke(obj);
     }
+
+    public int getPositionById(int id) throws Exception {
+    LinkedList<T> list = listAll();
+    for (int i = 0; i < list.getLength(); i++) {
+        T obj = list.get(i);
+        Integer objId = (Integer) getMethod("Id", obj);
+        if (objId == id) {
+            return i;
+        }
+    }
+    throw new Exception("No se encontró el ID en la lista");
 }
+
+
+public void delete(int index) throws Exception {
+    LinkedList<T> list = listAll();  // Carga la lista del archivo
+    list.delete(index);              // Elimina el elemento en memoria
+    saveFile(g.toJson(list.toArray()));  // Guarda la lista actualizada al archivo
+}
+}
+//

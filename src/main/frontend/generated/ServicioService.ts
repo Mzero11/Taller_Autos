@@ -1,0 +1,9 @@
+import { EndpointRequestInit as EndpointRequestInit_1 } from "@vaadin/hilla-frontend";
+import client_1 from "./connect-client.default.js";
+async function createServicio_1(nombre: string | undefined, descripcion: string | undefined, costo_total: number | undefined, init?: EndpointRequestInit_1): Promise<void> { return client_1.call("ServicioService", "createServicio", { nombre, descripcion, costo_total }, init); }
+async function deleteServicio_1(id: number | undefined, init?: EndpointRequestInit_1): Promise<void> { return client_1.call("ServicioService", "deleteServicio", { id }, init); }
+async function listServicio_1(init?: EndpointRequestInit_1): Promise<Array<Record<string, unknown> | undefined> | undefined> { return client_1.call("ServicioService", "listServicio", {}, init); }
+async function order_1(atributo: string | undefined, type: number | undefined, init?: EndpointRequestInit_1): Promise<Array<Record<string, unknown> | undefined> | undefined> { return client_1.call("ServicioService", "order", { atributo, type }, init); }
+async function search_1(attribute: string | undefined, text: string | undefined, type: number | undefined, init?: EndpointRequestInit_1): Promise<Array<Record<string, unknown> | undefined> | undefined> { return client_1.call("ServicioService", "search", { attribute, text, type }, init); }
+async function updateServicio_1(id: number | undefined, nombre: string | undefined, descripcion: string | undefined, costo_total: number | undefined, init?: EndpointRequestInit_1): Promise<void> { return client_1.call("ServicioService", "updateServicio", { id, nombre, descripcion, costo_total }, init); }
+export { createServicio_1 as createServicio, deleteServicio_1 as deleteServicio, listServicio_1 as listServicio, order_1 as order, search_1 as search, updateServicio_1 as updateServicio };

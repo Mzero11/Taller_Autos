@@ -1,0 +1,15 @@
+[    {
+        "id": 1,
+        "correo": "jorgitomaster777@gmail.com",
+        "clave": "123456",
+        "estado": "true",
+        "id_persona": 1
+    },
+    {
+        "id": 2,
+        "correo": "LuchoPortuano@gmail.com",
+        "clave": "MMMM",
+        "estado": "true",
+        "id_persona": 2
+    }
+]

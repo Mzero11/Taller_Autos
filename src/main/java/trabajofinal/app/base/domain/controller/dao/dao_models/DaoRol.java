@@ -1,33 +1,29 @@
 package trabajofinal.app.base.domain.controller.dao.dao_models;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import trabajofinal.app.base.domain.controller.dao.AdapterDao;
-import trabajofinal.app.base.domain.controller.datastruct.list.LinkedList;
-import trabajofinal.app.base.models.Cliente; 
+import trabajofinal.app.base.models.Rol;
 
-public class DaoCliente extends AdapterDao<Cliente> {
-    private Cliente obj;
+public class DaoRol extends AdapterDao<Rol> {
+    private Rol obj;
 
-
-    public DaoCliente() {
-        super(Cliente.class);
+    public DaoRol() {
+        super(Rol.class);
         // TODO Auto-generated constructor stub
     }
 
-    public Cliente getObj() {
+    public Rol getObj() {
         if (obj == null)
-            this.obj = new Cliente();
+            this.obj = new Rol();
         return this.obj;
     }
 
-    public void setObj(Cliente obj) {
+    public void setObj(Rol obj) {
         this.obj = obj;
     }
 
     public Boolean save() {
         try {
-            obj.setId(listAll().getSize()+1);
+            obj.setId(listAll().getLength()+1);
             this.persist(obj);
             return true;
         } catch (Exception e) {

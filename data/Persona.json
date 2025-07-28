@@ -1,0 +1,13 @@
+[    {
+        "id": 1,
+        "usuario": "jorgitomaster",
+        "edad": 18,
+        "id_rol": 1
+    },
+    {
+        "id": 2,
+        "usuario": "LuchoPortuano",
+        "edad": 12,
+        "id_rol": 2
+    }
+]

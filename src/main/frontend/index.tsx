@@ -14,9 +14,10 @@ import { createElement } from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router';
 import { router } from 'Frontend/generated/routes.js';
+import {AuthProvider} from './security/auth';
 
 function App() {
-    return <RouterProvider router={router} />;
+    return <AuthProvider><RouterProvider router={router} /></AuthProvider>;
 }
 
 const outlet = document.getElementById('outlet')!;

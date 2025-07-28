@@ -1,0 +1,9 @@
+import { EndpointRequestInit as EndpointRequestInit_1 } from "@vaadin/hilla-frontend";
+import client_1 from "./connect-client.default.js";
+async function generarFactura_1(personaId: number | undefined, vehiculoId: number | undefined, total: number | undefined, init?: EndpointRequestInit_1): Promise<void> { return client_1.call("FacturaService", "generarFactura", { personaId, vehiculoId, total }, init); }
+async function generarFacturaPDF_1(personaId: number | undefined, vehiculoId: number | undefined, servicioId: number | undefined, init?: EndpointRequestInit_1): Promise<string | undefined> { return client_1.call("FacturaService", "generarFacturaPDF", { personaId, vehiculoId, servicioId }, init); }
+async function listaServiciosCombo_1(init?: EndpointRequestInit_1): Promise<Array<Record<string, string | undefined> | undefined> | undefined> { return client_1.call("FacturaService", "listaServiciosCombo", {}, init); }
+async function listaVehiculoCombo_1(init?: EndpointRequestInit_1): Promise<Array<Record<string, unknown> | undefined> | undefined> { return client_1.call("FacturaService", "listaVehiculoCombo", {}, init); }
+async function obtenerPersonaIdPorVehiculo_1(vehiculoId: number | undefined, init?: EndpointRequestInit_1): Promise<number | undefined> { return client_1.call("FacturaService", "obtenerPersonaIdPorVehiculo", { vehiculoId }, init); }
+async function procesarPago_1(total: number, moneda: string | undefined, init?: EndpointRequestInit_1): Promise<boolean> { return client_1.call("FacturaService", "procesarPago", { total, moneda }, init); }
+export { generarFactura_1 as generarFactura, generarFacturaPDF_1 as generarFacturaPDF, listaServiciosCombo_1 as listaServiciosCombo, listaVehiculoCombo_1 as listaVehiculoCombo, obtenerPersonaIdPorVehiculo_1 as obtenerPersonaIdPorVehiculo, procesarPago_1 as procesarPago };

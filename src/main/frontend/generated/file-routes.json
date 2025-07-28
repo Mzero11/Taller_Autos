@@ -1,26 +1,72 @@
 [
   {
     "route": "",
+    "loginRequired": true,
     "flowLayout": false,
     "params": {},
     "title": "Main Layout",
     "children": [
       {
         "route": "",
+        "title": "Dashboard - Taller de Autos",
+        "menu": {
+          "icon": "vaadin:dashboard",
+          "order": 0,
+          "title": "Dashboard"
+        },
+        "flowLayout": false,
+        "params": {}
+      },
+      {
+        "route": "factura-list",
+        "title": "Facturar Servicio",
+        "menu": {
+          "icon": "vaadin:money",
+          "order": 2,
+          "title": "Facturar Servicio"
+        },
+        "flowLayout": false,
+        "params": {}
+      },
+      {
+        "route": "login",
+        "skipLayouts": true,
         "menu": {
           "exclude": true
         },
         "flowLayout": false,
         "params": {},
-        "title": "Main"
+        "title": "Login"
       },
       {
-        "route": "task-list",
-        "title": "Task List",
+        "route": "marca-list",
+        "title": "Marcas",
         "menu": {
-          "icon": "vaadin:clipboard-check",
+          "icon": "vaadin:factory",
+          "order": 2,
+          "title": "Marcas"
+        },
+        "flowLayout": false,
+        "params": {}
+      },
+      {
+        "route": "servicio-list",
+        "title": "Servicios",
+        "menu": {
+          "icon": "vaadin:tools",
+          "title": "Servicios",
+          "order": 3
+        },
+        "flowLayout": false,
+        "params": {}
+      },
+      {
+        "route": "vehiculo-list",
+        "title": "Vehículos",
+        "menu": {
+          "icon": "vaadin:car",
           "order": 1,
-          "title": "Task List"
+          "title": "Vehículos"
         },
         "flowLayout": false,
         "params": {}
